@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const app = express();
+const port = 8080 || process.env.PORT
 const fileUpload = require("express-fileupload")
 const { User } = require("./models/User");
 const{ Post } = require("./models/Post")
@@ -34,7 +35,7 @@ mongoose.connect(uri, (err)=> {
 })
 
 
-app.listen(8080, () => console.log("Listening on port 8080"))
+app.listen(port, () => console.log("Listening on port 8080"))
 
 //create a post
 
@@ -112,3 +113,11 @@ app.get("/images/:fileName", async (req,res)=> {
     //now images gets rendered in the browser
 })
 
+
+
+
+//Homepage basically
+
+app.get("/", (req,res)=> {
+    res.send(`<h1>You are in</h1>`)
+})
